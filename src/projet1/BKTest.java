@@ -14,19 +14,25 @@ public class BKTest {
 	public static void main(String[] args) throws InterruptedException {
 		System.setProperty("webdriver.chrome.driver", "C:\\Users\\mcassin\\Downloads\\chromedriver.exe");
 		
+		int codes = ' ';
 		String reference = " ";
 		String date = " ";
 		
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Quelle est la référence du restaurant BK?");
-		reference = sc.next();
+		System.out.println("Combien de tickets il faut remplir?");
+		codes = sc.nextInt();
+		// Partie demandant une saisie utilisateur commentée pour forcer le code restaurant du Burger King d'Alesia
+		//System.out.println("Quelle est la référence du restaurant BK?");
+		//reference = sc.next();
+		reference = "20749";
 		do{
-			System.out.println("Quelle est la date sur le ticket? (format dd/mm)");
+			System.out.println("Quelle est la date sur le(s) ticket? (format dd/mm)");
 		    sc.nextLine();
 		    date = sc.next();
 		  }while(!(date.matches("\\d{2}/\\d{2}")));
-	
+		
+		for(int i = 0; i < codes; ++i) {
 		WebDriver driver = new ChromeDriver();
 		driver.get("https://www.bkvousecoute.fr/");
 		Thread.sleep(500);
@@ -59,6 +65,7 @@ public class BKTest {
 		String validationPhrase = validationCode.getText();
 		System.out.println(validationPhrase);
         }
+		}
 	}
 
 }
